@@ -1,5 +1,6 @@
 import {AxiosInstance} from 'axios';
 import axiosInstance from './axios';
+import {BASE_URL} from '@env';
 
 const sampleUrl = 'https://api.ip.pe.kr/json/';
 
@@ -17,29 +18,36 @@ class SampleService {
   }
 
   async getSensorsInfo() {
-    let response = await this.instance.post('http://39.115.92.43:3333', {
+    let response = await this.instance.post(BASE_URL, {
       command: 'sensors',
     });
     return response.data;
   }
 
   async getDiskInfo() {
-    let response = await this.instance.post('http://39.115.92.43:3333', {
+    let response = await this.instance.post(BASE_URL, {
       command: 'df -m | sort -s',
     });
     return response.data;
   }
 
   async getMemoryInfo() {
-    let response = await this.instance.post('http://39.115.92.43:3333', {
+    let response = await this.instance.post(BASE_URL, {
       command: 'free -m',
     });
     return response.data;
   }
 
   async pm2Info() {
-    let response = await this.instance.post('http://39.115.92.43:3333', {
+    let response = await this.instance.post(BASE_URL, {
       command: 'pm2 status',
+    });
+    return response.data;
+  }
+
+  async restartPm2() {
+    let response = await this.instance.post(BASE_URL, {
+      command: 'pm2 restart 0',
     });
     return response.data;
   }

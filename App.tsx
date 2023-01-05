@@ -66,7 +66,8 @@ const App = () => {
     const disk = await SampleInstance().getDiskInfo();
     const memory = await SampleInstance().getMemoryInfo();
     const pm2 = await SampleInstance().pm2Info();
-    console.log(pm2);
+    const restartPm2 = await SampleInstance().restartPm2();
+
     setSensorsInfo(sensors);
     setDiskInfo(disk);
     setMemoryInfo(memory);
@@ -75,6 +76,7 @@ const App = () => {
 
   useEffect(() => {
     init();
+    // setInterval(init, 60000);
   }, []);
 
   return (
@@ -83,7 +85,7 @@ const App = () => {
         <SafeAreaView style={{backgroundColor: '#fff'}}>
           {/* // status bar style */}
           <View style={{display: 'flex', height: FULL_SCREEN_HEIGHT}}>
-            <ScrollView>
+            <ScrollView style={{marginBottom: 50}}>
               <BottomSheetSample ref={sampleModal} />
 
               {/* start point */}
