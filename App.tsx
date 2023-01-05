@@ -66,7 +66,6 @@ const App = () => {
     const disk = await SampleInstance().getDiskInfo();
     const memory = await SampleInstance().getMemoryInfo();
     const pm2 = await SampleInstance().pm2Info();
-    const restartPm2 = await SampleInstance().restartPm2();
 
     setSensorsInfo(sensors);
     setDiskInfo(disk);

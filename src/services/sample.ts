@@ -44,13 +44,6 @@ class SampleService {
     });
     return response.data;
   }
-
-  async restartPm2() {
-    let response = await this.instance.post(BASE_URL, {
-      command: 'pm2 restart 0',
-    });
-    return response.data;
-  }
 }
 
 let sampleServiceInstance: SampleService;
